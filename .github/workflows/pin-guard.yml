@@ -1,6 +1,5 @@
-name: OVK Pin Guard
+name: Pin Guard
 
-# Fails CI when OVK Action pins drift to uses: ./ or mutable @main.
 on:
   push:
     branches: [main]
@@ -12,12 +11,12 @@ permissions:
   contents: read
 
 jobs:
-  pin-guard:
+  assert-ovk-pin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Fail if OVK pin drifts to uses: ./ or @main
+      - name: Assert immutable OVK Action pin
         run: python scripts/assert_ovk_pin.py
