@@ -1,5 +1,6 @@
 name: OVK Pin Guard
 
+# Fails CI when OVK Action pins drift to uses: ./ or mutable @main.
 on:
   push:
     branches: [main]
