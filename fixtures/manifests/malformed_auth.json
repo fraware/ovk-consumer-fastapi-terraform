@@ -1,0 +1,11 @@
+{
+  "schema_version": "ovk.verification_manifest.v1",
+  "name": "ovk-consumer-fastapi-terraform-malformed-auth",
+  "description": "Malformed authorization abstraction",
+  "lanes": [
+    {
+      "lane": "authorization",
+      "input": "../inputs/auth_malformed.json"
+    }
+  ]
+}

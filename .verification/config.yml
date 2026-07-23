@@ -1,0 +1,3 @@
+schema_version: ovk.config.v1
+mode: advisory
+default_on_unknown: require_human_review

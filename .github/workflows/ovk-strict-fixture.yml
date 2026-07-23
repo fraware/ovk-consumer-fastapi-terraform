@@ -1,0 +1,37 @@
+name: OVK Strict Fixture Path
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "fixtures/diffs/advisory_failing.diff"
+      - ".github/workflows/ovk-strict-fixture.yml"
+
+permissions:
+  contents: read
+  checks: write
+
+env:
+  OVK_PACKAGE_VERSION: "1.2.1"
+
+jobs:
+  ovk-strict:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: OVK strict on known-bad secrets fixture
+        id: ovk
+        continue-on-error: true
+        uses: fraware/open-verification-kernel@v1.2.1
+        with:
+          mode: strict
+          use-check: "true"
+          emit-check: "true"
+          post-comment: "false"
+          changed-files: fixtures/diffs/advisory_failing.diff
+      - name: Assert strict path blocked
+        run: |
+          set -euo pipefail
+          test "${{ steps.ovk.outputs.recommendation }}" = "block"
+          test "${{ steps.ovk.outcome }}" = "failure"
+          echo "Strict blocking scenario covered via Action @v1.2.1"

@@ -1,0 +1,41 @@
+name: OVK Scenario Matrix
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  OVK_PACKAGE_VERSION: "1.2.1"
+  CONSUMER_REPO: "fraware/ovk-consumer-fastapi-terraform"
+
+jobs:
+  scenario-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Guard Action pins
+        run: python scripts/assert_ovk_pin.py
+      - name: Install cosign-verified OVK wheel (v1.2.1)
+        run: python scripts/install_ovk_wheel.py
+      - name: Run program section 23.1 scenario matrix
+        run: python scripts/run_scenario_matrix.py
+      - name: Seed pilot ledger from automated scenarios
+        run: python scripts/seed_ledger_from_matrix.py
+      - name: Upload scenario artifacts and ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ovk-consumer-scenario-artifacts
+          path: |
+            artifacts/scenario-matrix/**
+            pilot/ledger.json
+          retention-days: 90

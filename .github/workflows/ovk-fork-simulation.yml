@@ -1,0 +1,39 @@
+name: OVK Fork PR Permission Simulation
+
+# Dry simulation of reduced-permission fork PR semantics.
+# Uses pull_request (NOT pull_request_target) to avoid secret-exfiltration footguns.
+# A true cross-fork PR from an external fork remains a manual human step; see docs/FORK_PR.md.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  # Intentionally omit pull-requests: write and checks: write to model fork token limits.
+
+env:
+  OVK_PACKAGE_VERSION: "1.2.1"
+
+jobs:
+  ovk-fork-sim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: OVK advisory with reduced permissions
+        uses: fraware/open-verification-kernel@v1.2.1
+        with:
+          mode: advisory
+          use-check: "true"
+          emit-check: "true"
+          post-comment: "true"
+          # Comment/check emission may no-op without write permissions; that is the point.
+      - name: Record reduced-permission outcome
+        if: always()
+        run: |
+          echo "Fork simulation: contents:read only."
+          echo "post-comment/emit-check may fail closed without write scopes."
+          echo "True external-fork PR adjudication is still required for production gate."

@@ -1,0 +1,42 @@
+name: OVK Advisory PR Path
+
+# Exercises Action pin @v1.2.1 with PR comment + check run on pull_request.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+env:
+  OVK_PACKAGE_VERSION: "1.2.1"
+
+jobs:
+  ovk-advisory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: OVK advisory (comment + check run)
+        id: ovk
+        uses: fraware/open-verification-kernel@v1.2.1
+        with:
+          mode: advisory
+          use-check: "true"
+          emit-check: "true"
+          post-comment: "true"
+      - name: Upload Action evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ovk-advisory-pr-artifacts
+          path: |
+            ovk-evidence.json
+            ovk-pr-comment.md
+            ovk-attestation.json
+            ovk-artifact-manifest.json
+            ovk-evidence-quality.json
+          if-no-files-found: ignore

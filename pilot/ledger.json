@@ -1,0 +1,320 @@
+{
+  "schema_version": "ovk.pilot_ledger.v1",
+  "ledger_id": "ovk-consumer-fastapi-terraform-pilot-ledger",
+  "description": "Independent consumer pilot ledger for program section 23. Entries labeled automated_scenario are CI fixtures, not human adjudications. production_gate_met remains false until 30 human-adjudicated PRs exist.",
+  "ovk_source_version": "v1.2.1",
+  "consumer_repos": [
+    "fraware/ovk-consumer-fastapi-terraform"
+  ],
+  "production_gate_met": false,
+  "entries": [
+    {
+      "entry_id": "auto-published_wheel",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:published_wheel",
+      "intent": "published_wheel",
+      "recommendation": "n/a",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Installed open-verification-kernel==1.2.1 via PyPI or cosign-verified GitHub Release wheel.",
+      "runtime": {
+        "elapsed_ms": null,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "scripts/install_ovk_wheel.py"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-advisory_passing",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:advisory_passing",
+      "intent": "advisory_passing_pr",
+      "recommendation": "allow",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Advisory mode exits 0 on allow.",
+      "runtime": {
+        "elapsed_ms": 4354.368209838867,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\advisory-passing\\ovk-evidence.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\advisory-passing\\ovk-pr-comment.md"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-advisory_failing",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:advisory_failing",
+      "intent": "advisory_failing_pr",
+      "recommendation": "block",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Advisory reports block but does not fail the job.",
+      "runtime": {
+        "elapsed_ms": 6189.272880554199,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\advisory-failing\\ovk-evidence.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\advisory-failing\\ovk-pr-comment.md"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-strict_blocking",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:strict_blocking",
+      "intent": "strict_blocking",
+      "recommendation": "block",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Strict mode fails closed on block.",
+      "runtime": {
+        "elapsed_ms": 4821.229696273804,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\strict-blocking\\ovk-evidence.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-malformed_or_incomplete_abstraction",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:malformed_or_incomplete_abstraction",
+      "intent": "malformed_or_incomplete_abstraction",
+      "recommendation": "require_human_review",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Malformed auth abstraction refuses silent allow.",
+      "runtime": {
+        "elapsed_ms": 6252.1984577178955,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-artifact-manifest.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-attestation-envelope.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-attestation.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-evidence-quality.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-evidence.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-pr-comment.md",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\malformed\\ovk-provenance.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-release_bundle",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:release_bundle",
+      "intent": "release_bundle",
+      "recommendation": "allow",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "validate-outputs rc=0",
+      "runtime": {
+        "elapsed_ms": 7460.98780632019,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-artifact-manifest.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-attestation-envelope.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-attestation.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-evidence-quality.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-evidence.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-pr-comment.md",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\release-bundle\\ovk-provenance.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-cache_reuse",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:cache_reuse",
+      "intent": "cache_reuse",
+      "recommendation": "allow",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "first=5361ms second=4709ms cache_files=2",
+      "runtime": {
+        "elapsed_ms": 4709.390640258789,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.verification\\cache\\02f7b7ece2b42633f8b1ae48f22db6bc1207200c1aa308cb41ca021840d90d12.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.verification\\cache\\268fa59a065c103b5efc5bd3adcdd12fe241420ed842705e1e3368fc80379863.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-policy_change",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:policy_change",
+      "intent": "policy_change",
+      "recommendation": "allow",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "policy A rec=allow rc=0; policy B rec=allow rc=0",
+      "runtime": {
+        "elapsed_ms": null,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.verification\\config.yml",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\policy-a\\ovk-evidence.json",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\policy-b\\ovk-evidence.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-backend_unavailable",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:backend_unavailable",
+      "intent": "backend_unavailable",
+      "recommendation": "allow",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Policy restricted to cbmc (typically absent); recommendation recorded honestly.",
+      "runtime": {
+        "elapsed_ms": 6052.4022579193115,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\backend-unavailable\\ovk-evidence.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-native_backend_timeout",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:native_backend_timeout",
+      "intent": "native_backend_timeout",
+      "recommendation": "unknown",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Installed-wheel CBMC optional_runner TimeoutExpired path returns status=unknown with used_native_binary=true; never pass.",
+      "runtime": {
+        "elapsed_ms": 2.7735233306884766,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\native-timeout\\cbmc-timeout-result.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-generated_regression_artifact",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:generated_regression_artifact",
+      "intent": "generated_regression_artifact",
+      "recommendation": "block",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "generated_artifacts=1 files=0",
+      "runtime": {
+        "elapsed_ms": 8790.374040603638,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\artifacts\\scenario-matrix\\generated-regression\\ovk-evidence.json"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-pr_comment_and_check_run",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:pr_comment_and_check_run",
+      "intent": "pr_comment_and_check_run",
+      "recommendation": "n/a",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Action workflows pin @v1.2.1 with post-comment and emit-check; exercised on pull_request events.",
+      "runtime": {
+        "elapsed_ms": null,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.github\\workflows\\ovk-advisory-pr.yml",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.github\\workflows\\ovk-fork-simulation.yml",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.github\\workflows\\ovk-pin-guard.yml",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.github\\workflows\\ovk-scenario-matrix.yml",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.github\\workflows\\ovk-strict-fixture.yml"
+      ],
+      "final_disposition": "scenario_pass"
+    },
+    {
+      "entry_id": "auto-fork_pr_reduced_permissions",
+      "repository": "fraware/ovk-consumer-fastapi-terraform",
+      "ovk_source_version": "v1.2.1",
+      "pr_identifier": "automated_scenario:fork_pr_reduced_permissions",
+      "intent": "fork_pr_reduced_permissions",
+      "recommendation": "n/a",
+      "human_adjudication": "automated_scenario",
+      "false_positive": null,
+      "missed_detection": null,
+      "unknown_appropriateness": null,
+      "reviewer_comments": "Dry simulation with pull_request + contents:read only. True cross-fork PR remains a human step.",
+      "runtime": {
+        "elapsed_ms": null,
+        "mode": "automated_scenario",
+        "runner": "scripts/run_scenario_matrix.py"
+      },
+      "artifacts": [
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\.github\\workflows\\ovk-fork-simulation.yml",
+        "C:\\Users\\mateo\\ovk-consumer-fastapi-terraform\\docs\\FORK_PR.md"
+      ],
+      "final_disposition": "scenario_pass"
+    }
+  ]
+}
