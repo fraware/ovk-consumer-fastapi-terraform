@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 env:
-  OVK_CANDIDATE_SHA: "40fefb4de8b59978fa338fc09d3a185d5708bc1f"
+  OVK_CANDIDATE_SHA: "b8d734f4a6a92a534aed87db91e12df16b718a9e"
 
 jobs:
   assert-ovk-pin:
