@@ -12,7 +12,7 @@ permissions:
   checks: write
 
 env:
-  OVK_PACKAGE_VERSION: "1.2.1"
+  OVK_PACKAGE_VERSION: "1.3.0-rc.1"
 
 jobs:
   ovk-strict:
@@ -22,7 +22,7 @@ jobs:
       - name: OVK strict on known-bad secrets fixture
         id: ovk
         continue-on-error: true
-        uses: fraware/open-verification-kernel@v1.2.1
+        uses: fraware/open-verification-kernel@99f478a3af5a5505d05319db8a816a0053089fe8
         with:
           mode: strict
           use-check: "true"
@@ -34,4 +34,4 @@ jobs:
           set -euo pipefail
           test "${{ steps.ovk.outputs.recommendation }}" = "block"
           test "${{ steps.ovk.outcome }}" = "failure"
-          echo "Strict blocking scenario covered via Action @v1.2.1"
+          echo "Strict blocking scenario covered via exact OVK candidate SHA."
