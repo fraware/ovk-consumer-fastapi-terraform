@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 2
       - name: OVK advisory with reduced permissions
-        uses: fraware/open-verification-kernel@b8d734f4a6a92a534aed87db91e12df16b718a9e
+        uses: fraware/open-verification-kernel@b9234a81ca7b3efde7a695bd09d29f3361d4b4ce
         with:
           mode: advisory
           use-check: "true"
