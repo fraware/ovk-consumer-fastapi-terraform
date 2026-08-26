@@ -49,6 +49,19 @@ def expect(cond: bool, msg: str) -> None:
         raise AssertionError(msg)
 
 
+def expected_action_pin() -> str:
+    """Return the Action ref appropriate to stable or pre-release candidate mode."""
+
+    candidate = os.environ.get("OVK_CANDIDATE_SHA", "").strip().lower()
+    if candidate:
+        expect(
+            len(candidate) == 40 and all(ch in "0123456789abcdef" for ch in candidate),
+            f"OVK_CANDIDATE_SHA must be exact 40-hex, got {candidate!r}",
+        )
+        return f"fraware/open-verification-kernel@{candidate}"
+    return f"fraware/open-verification-kernel@v{OVK_VERSION}"
+
+
 def scenario_advisory_passing() -> dict:
     out = OUT / "advisory-passing"
     if out.exists():
@@ -528,8 +541,8 @@ def scenario_pr_comment_and_check_run() -> dict:
         "missing emit-check: true workflow",
     )
     expect(
-        "fraware/open-verification-kernel@v1.2.1" in texts,
-        "Action pin missing in PR workflows",
+        expected_action_pin() in texts,
+        f"Action pin {expected_action_pin()} missing in PR workflows",
     )
     return {
         "scenario_id": "pr_comment_and_check_run",
@@ -539,7 +552,7 @@ def scenario_pr_comment_and_check_run() -> dict:
         "artifacts": [str(p) for p in workflows],
         "final_disposition": "scenario_pass",
         "notes": (
-            "Action workflows pin @v1.2.1 with post-comment and emit-check; "
+            f"Action workflows pin {expected_action_pin()} with post-comment and emit-check; "
             "exercised on pull_request events."
         ),
     }
@@ -557,7 +570,7 @@ def scenario_fork_pr_simulation() -> dict:
         "must not use pull_request_target as a workflow trigger",
     )
     expect("permissions:" in text and "contents: read" in text, "must declare reduced permissions")
-    expect("fraware/open-verification-kernel@v1.2.1" in text, "must pin @v1.2.1")
+    expect(expected_action_pin() in text, f"must pin {expected_action_pin()}")
     return {
         "scenario_id": "fork_pr_reduced_permissions",
         "intent": "fork_pr_reduced_permissions",
