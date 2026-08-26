@@ -12,6 +12,7 @@ permissions:
 
 env:
   OVK_PACKAGE_VERSION: "1.2.1"
+  OVK_CANDIDATE_SHA: "b8d734f4a6a92a534aed87db91e12df16b718a9e"
   CONSUMER_REPO: "fraware/ovk-consumer-fastapi-terraform"
 
 jobs:
@@ -23,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Guard Action pins
-        run: python scripts/assert_ovk_pin.py
+        run: python scripts/assert_ovk_pin.py --candidate-sha "$OVK_CANDIDATE_SHA"
       - name: Install cosign-verified OVK wheel (v1.2.1)
         run: python scripts/install_ovk_wheel.py
       - name: Run program section 23.1 scenario matrix
