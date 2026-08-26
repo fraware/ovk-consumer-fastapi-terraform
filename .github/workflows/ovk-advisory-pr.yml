@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 2
       - name: OVK advisory (comment + check run)
         id: ovk
-        uses: fraware/open-verification-kernel@99f478a3af5a5505d05319db8a816a0053089fe8
+        uses: fraware/open-verification-kernel@40fefb4de8b59978fa338fc09d3a185d5708bc1f
         with:
           mode: advisory
           use-check: "true"

@@ -22,7 +22,7 @@ jobs:
       - name: OVK strict on known-bad secrets fixture
         id: ovk
         continue-on-error: true
-        uses: fraware/open-verification-kernel@99f478a3af5a5505d05319db8a816a0053089fe8
+        uses: fraware/open-verification-kernel@40fefb4de8b59978fa338fc09d3a185d5708bc1f
         with:
           mode: strict
           use-check: "true"
